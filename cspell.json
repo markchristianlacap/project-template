@@ -3,6 +3,7 @@
         "dacpac",
         "Mapster",
         "omsc",
+        "Pinia",
         "sqlpackage",
         "sqlproj"
     ]
