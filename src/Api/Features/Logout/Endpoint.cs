@@ -1,4 +1,4 @@
-using FastEndpoints.Security;
+﻿using FastEndpoints.Security;
 
 namespace Api.Features.Logout;
 

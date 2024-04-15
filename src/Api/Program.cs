@@ -1,4 +1,4 @@
-using System.Text.Json;
+﻿using System.Text.Json;
 using Api.Database;
 using Api.Database.Seeders;
 using Api.Services;

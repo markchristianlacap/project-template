@@ -1,4 +1,4 @@
-namespace Api.Entities.Common;
+﻿namespace Api.Entities.Common;
 
 public class BaseEntity
 {

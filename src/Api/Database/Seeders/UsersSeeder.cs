@@ -1,4 +1,4 @@
-using Api.Entities;
+﻿using Api.Entities;
 
 namespace Api.Database.Seeders;
 

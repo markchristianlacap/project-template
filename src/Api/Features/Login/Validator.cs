@@ -1,4 +1,4 @@
-namespace Api.Features.Login;
+﻿namespace Api.Features.Login;
 
 public class Validator : Validator<LoginReq>
 {
