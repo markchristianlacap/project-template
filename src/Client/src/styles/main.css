@@ -1,0 +1,6 @@
+@import 'primeicons/primeicons.css';
+@import './markdown.css';
+@import './base.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

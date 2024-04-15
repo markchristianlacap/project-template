@@ -1,0 +1,13 @@
+{
+    "private":true,
+    "scripts": {
+        "watch": "dotnet watch --project src/Api --no-hot-reload",
+        "dev": "pnpm --filter ./src/Client dev",
+        "migrations:build": "dotnet build src/Migrations/Migrations.sqlproj",
+        "migrations:publish": "sqlpackage /Action:Publish /SourceFile:src/Migrations/bin/Debug/Migrations.dacpac /Profile:src/Migrations/Migrations.publish.xml",
+        "migrate": "pnpm run migrations:build && pnpm run migrations:publish"
+    },
+    "workspaces":[
+        "./src/Client"
+    ]
+}
