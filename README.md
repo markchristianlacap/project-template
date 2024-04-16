@@ -39,6 +39,7 @@
 - [Mapster](https://github.com/MapsterMapper/Mapster)
 - [Humanizer](https://github.com/Humanizr/Humanizer)
 - [Bcrypt.Net Next](https://www.nuget.org/packages/BCrypt.Net-Next)
+- [FluentValidation](https://fluentvalidation.net)
 
 ### Javascript/Typescript
 

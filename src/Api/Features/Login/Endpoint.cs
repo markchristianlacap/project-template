@@ -11,7 +11,7 @@ public class Endpoint : Endpoint<LoginReq>
 
     public override void Configure()
     {
-        Post("login");
+        Post("/login");
         AllowAnonymous();
     }
 

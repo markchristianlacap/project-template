@@ -1,0 +1,7 @@
+PUT http://localhost:5100/api/users/0b6d68c2-783e-427f-3e7d-08dc5ce56f80
+Content-Type: application/json
+
+{
+    "email": "mark@gmail.com",
+    "name": "mark"
+}
