@@ -10,7 +10,6 @@ public class Endpoint : Endpoint<UserUpdateReq>
     public override void Configure()
     {
         Put("/users/{id:guid}");
-        AllowAnonymous();
     }
 
     public override async Task HandleAsync(UserUpdateReq req, CancellationToken ct)

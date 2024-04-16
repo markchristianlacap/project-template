@@ -2,9 +2,12 @@
 </script>
 
 <template>
-  <div class="mt-20 text-center">
-    <p class="text-lg font-bold uppercase">
-      Not found
+  <div class="mt-20 mb-3 text-center">
+    <p>
+      <span class="font-bold text-red-500 text-xl">404</span>
+      <span class="text-gray-500 text-lg ml-1">
+        Not found
+      </span>
     </p>
   </div>
 </template>

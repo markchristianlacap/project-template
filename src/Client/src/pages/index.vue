@@ -31,22 +31,24 @@ async function login() {
         Please enter your email and password to login to your account.
       </template>
       <template #content>
-        <Message v-if="errors.generalErrors" severity="error">
-          {{ errors.generalErrors[0] }}
-        </Message>
-        <div class="flex flex-col gap-2">
-          <label for="email">Email</label>
-          <InputText v-model="form.email" placeholder="Enter your email" type="email" :invalid="!!errors.email" />
-          <small v-if="!!errors.email" class="text-red-500">{{ errors.email[0] }}</small>
-        </div>
-        <div class="mt-4 flex flex-col gap-2">
-          <label for="password">Password</label>
-          <Password v-model="form.password" toggle-mask :feedback="false" placeholder="Enter your password" :invalid="!!errors.password" />
-          <small v-if="!!errors.password" class="text-red-500">{{ errors.password[0] }}</small>
-        </div>
-        <div class="mt-8">
-          <Button label="Login" :loading="loading" @click="login" />
-        </div>
+        <form @submit.prevent="login">
+          <Message v-if="errors.generalErrors" severity="error">
+            {{ errors.generalErrors[0] }}
+          </Message>
+          <div class="flex flex-col gap-2">
+            <label for="email">Email</label>
+            <InputText v-model="form.email" placeholder="Enter your email" type="email" :invalid="!!errors.email" />
+            <small v-if="!!errors.email" class="text-red-500">{{ errors.email[0] }}</small>
+          </div>
+          <div class="mt-4 flex flex-col gap-2">
+            <label for="password">Password</label>
+            <Password v-model="form.password" toggle-mask :feedback="false" placeholder="Enter your password" :invalid="!!errors.password" />
+            <small v-if="!!errors.password" class="text-red-500">{{ errors.password[0] }}</small>
+          </div>
+          <div class="mt-8">
+            <Button label="Login" :loading="loading" type="submit" />
+          </div>
+        </form>
       </template>
     </Card>
   </div>

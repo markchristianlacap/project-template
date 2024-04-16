@@ -8,6 +8,9 @@ export const install: UserModule = ({ app }) => {
   app.use(PrimeVue, {
     unstyled: true,
     pt: Wind,
+    ptOptions: {
+      mergeProps: true,
+    },
   })
   app.use(ToastService)
 }

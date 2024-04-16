@@ -4,10 +4,16 @@ import type { MenuItem } from 'primevue/menuitem'
 const userStore = useUserStore()
 const toast = useToast()
 const router = useRouter()
+const menu = ref<any>()
+const { isMobile } = useScreenResolutions()
 const items = ref<MenuItem[]>([
   {
     label: 'Dashboard',
     url: '/user',
+  },
+  {
+    label: 'Users',
+    url: '/users',
   },
   {
     label: 'Logout',
@@ -19,8 +25,12 @@ const items = ref<MenuItem[]>([
     },
   },
 ])
+function toggle(e: any) {
+  menu.value.toggle(e)
+}
 </script>
 
 <template>
-  <Menu :model="items" class="mt-5 ml-5" />
+  <Button v-if="isMobile" type="button" icon="pi pi-bars" aria-isMobile="true" aria-controls="overlay_menu" @click="toggle" />
+  <Menu ref="menu" :model="items" :popup="isMobile" />
 </template>

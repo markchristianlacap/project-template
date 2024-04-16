@@ -1,0 +1,4 @@
+html,
+body {
+  @apply dark:bg-surface-800 dark:text-white;
+}

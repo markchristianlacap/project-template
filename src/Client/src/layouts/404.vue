@@ -3,17 +3,13 @@ const router = useRouter()
 </script>
 
 <template>
-  <main class="container">
+  <main class="container mx-auto">
     <RouterView />
     <div class="flex items-center justify-center gap-2">
-      <Button>
-        <RouterLink to="/">
-          Go to Home
-        </RouterLink>
-      </Button>
-      <Button @click="router.back()">
-        Go back
-      </Button>
+      <Button icon="pi pi-arrow-left" label="Go Back" @click="router.back()" />
+      <RouterLink to="/">
+        <Button icon="pi pi-home" label="Go to Home Page" />
+      </RouterLink>
     </div>
   </main>
 </template>
