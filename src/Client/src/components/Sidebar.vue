@@ -10,10 +10,12 @@ const items = ref<MenuItem[]>([
   {
     label: 'Dashboard',
     url: '/user',
+    icon: 'pi pi-home',
   },
   {
     label: 'Users',
     url: '/users',
+    icon: 'pi pi-users',
   },
   {
     label: 'Logout',

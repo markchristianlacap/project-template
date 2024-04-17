@@ -11,6 +11,11 @@ declare module 'vue' {
     Badge: typeof import('primevue/badge')['default']
     Button: typeof import('primevue/button')['default']
     Card: typeof import('primevue/card')['default']
+    Column: typeof import('primevue/column')['default']
+    DataTable: typeof import('primevue/datatable')['default']
+    Dialog: typeof import('primevue/dialog')['default']
+    DialogForm: typeof import('./components/users/DialogForm.vue')['default']
+    Divider: typeof import('primevue/divider')['default']
     InputText: typeof import('primevue/inputtext')['default']
     Menu: typeof import('primevue/menu')['default']
     Message: typeof import('primevue/message')['default']
@@ -20,5 +25,8 @@ declare module 'vue' {
     Sidebar: typeof import('./components/Sidebar.vue')['default']
     Splitter: typeof import('primevue/splitter')['default']
     SplitterPanel: typeof import('primevue/splitterpanel')['default']
+    UserDialog: typeof import('./components/users/UserDialog.vue')['default']
+    UserDialogForm: typeof import('./components/users/UserDialogForm.vue')['default']
+    UserHeader: typeof import('./components/Layout/UserHeader.vue')['default']
   }
 }

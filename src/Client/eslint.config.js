@@ -10,8 +10,8 @@ export default antfu(
       'src/presets/*',
     ],
   },
-  // Legacy config
-  compat.config({
+  ...compat.config({
+    // https://github.com/francoismassart/eslint-plugin-tailwindcss
     extends: ['plugin:tailwindcss/recommended'],
   }),
 )

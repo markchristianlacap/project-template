@@ -3,7 +3,9 @@
 </script>
 
 <template>
-  <div class="flex gap-5 mt-5 mx-5">
+  <UserHeader />
+  <div class="border-b dark:border-surface-600 mb-4" />
+  <div class="flex gap-5 mx-5">
     <div>
       <Sidebar />
     </div>
