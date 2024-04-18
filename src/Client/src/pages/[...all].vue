@@ -2,10 +2,10 @@
 </script>
 
 <template>
-  <div class="mt-20 mb-3 text-center">
+  <div class="mb-3 mt-20 text-center">
     <p>
-      <span class="font-bold text-red-500 text-xl">404</span>
-      <span class="text-gray-500 text-lg ml-1">
+      <span class="text-xl text-red-500 font-bold">404</span>
+      <span class="ml-1 text-lg text-gray-500">
         Not found
       </span>
     </p>

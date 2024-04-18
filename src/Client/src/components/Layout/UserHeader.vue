@@ -3,9 +3,9 @@
 </script>
 
 <template>
-  <div class="flex justify-between px-3 py-2 items-center">
+  <div class="flex items-center justify-between px-3 py-2">
     <div>
-      <p class="font-bold text-surface-600 dark:text-surface-300">
+      <p class="text-surface-600 font-bold dark:text-surface-300">
         Admin Panel
       </p>
     </div>

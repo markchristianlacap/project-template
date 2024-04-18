@@ -4,8 +4,9 @@ import { setupLayouts } from 'virtual:generated-layouts'
 import { routes } from 'vue-router/auto-routes'
 import App from './App.vue'
 import type { UserModule } from './types'
-
+import '@unocss/reset/tailwind.css'
 import './styles/main.css'
+import 'uno.css'
 
 // https://github.com/antfu/vite-ssg
 export const createApp = ViteSSG(

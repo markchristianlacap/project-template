@@ -14,6 +14,7 @@ import WebfontDownload from 'vite-plugin-webfont-dl'
 import VueRouter from 'unplugin-vue-router/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
 import { PrimeVueResolver } from 'unplugin-vue-components/resolvers'
+import UnoCSS from 'unocss/vite'
 
 export default defineConfig({
   resolve: {
@@ -83,6 +84,9 @@ export default defineConfig({
       ],
     }),
 
+    // https://github.com/antfu/unocss
+    // see uno.config.ts for config
+    UnoCSS(),
     // https://github.com/unplugin/unplugin-vue-markdown
     // Don't need this? Try vitesse-lite: https://github.com/antfu/vitesse-lite
     Markdown({

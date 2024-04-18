@@ -3,7 +3,7 @@ const router = useRouter()
 </script>
 
 <template>
-  <main class="container mx-auto">
+  <main class="mx-auto container">
     <RouterView />
     <div class="flex items-center justify-center gap-2">
       <Button icon="pi pi-arrow-left" label="Go Back" @click="router.back()" />

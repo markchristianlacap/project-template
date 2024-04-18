@@ -22,10 +22,15 @@ async function login() {
 </script>
 
 <template>
-  <div class="mt-[200px]">
-    <Card class="w-[500px] m-auto">
+  <div class="mt-200px">
+    <Card class="m-auto w-500px">
       <template #title>
-        Login to your account
+        <div class="mb-2 flex items-center justify-between">
+          <p>
+            Login to your account
+          </p>
+          <Button :icon="isDark ? 'pi pi-moon' : 'pi pi-sun'" text @click="toggleDark()" />
+        </div>
       </template>
       <template #subtitle>
         Please enter your email and password to login to your account.

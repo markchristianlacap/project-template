@@ -24,7 +24,8 @@
 - [Fast Endpoints](https://fast-endpoints.com)
 - [Vue 3](https://vuejs.org)
 - [Vite](https://vitejs.dev)
-- [PrimeVue + Tailwind CSS](https://tailwind.primevue.org)
+- [PrimeVue](https://primevue.org)
+- [UnoCSS](https://unocss.dev)]
 
 ## Database
 
@@ -45,6 +46,6 @@
 
 - [Vue 3](https://vuejs.org)
 - [Vite](https://vitejs.dev)
-- [PrimeVue + Tailwind CSS](https://tailwind.primevue.org)
+- [PrimeVue + UnoCSS](https://tailwind.primevue.org)
 - [Axios](https://axios.org)
 - [Pinia](https://pinia.vuejs.org)

@@ -32,28 +32,28 @@ watch(visible, () => {
 <template>
   <Dialog v-model:visible="visible" modal header="User Form">
     <form @submit.prevent="submit">
-      <div class="flex gap-3 flex-col mb-3">
+      <div class="mb-3 flex flex-col gap-3">
         <label for="name">Name</label>
         <InputText v-model="form.name" placeholder="Enter user name" />
         <small v-if="errors.name" class="text-red-500">
           {{ errors.name[0] }}
         </small>
       </div>
-      <div class="flex gap-3 flex-col mb-3">
+      <div class="mb-3 flex flex-col gap-3">
         <label for="email">Email</label>
         <InputText v-model="form.email" placeholder="Enter user email" />
         <small v-if="errors.email" class="text-red-500">
           {{ errors.email[0] }}
         </small>
       </div>
-      <div class="flex gap-3 flex-col mb-3">
+      <div class="mb-3 flex flex-col gap-3">
         <label for="password">Password</label>
         <Password v-model="form.password" type="password" placeholder="Enter user password" />
         <small v-if="errors.password" class="text-red-500">
           {{ errors.password[0] }}
         </small>
       </div>
-      <div class="flex gap-2 justify-end mt-10">
+      <div class="mt-10 flex justify-end gap-2">
         <Button label="Cancel" severity="danger" @click="visible = false" />
         <Button type="submit" label="Submit" :loading="loading" />
       </div>

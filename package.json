@@ -1,5 +1,6 @@
 {
     "private":true,
+    "type": "module",
     "scripts": {
         "watch": "dotnet watch --project src/Api --no-hot-reload",
         "dev": "pnpm --filter ./src/Client dev",

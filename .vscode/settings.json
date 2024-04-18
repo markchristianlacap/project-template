@@ -72,6 +72,9 @@
         "yaml"
     ],
     "eslint.workingDirectories": [
-        "src/Client"
+        "./src/Client"
+    ],
+    "unocss.root": [
+        "./src/Client"
     ]
 }
