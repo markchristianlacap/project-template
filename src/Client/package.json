@@ -9,7 +9,7 @@
     "sizecheck": "npx vite-bundle-visualizer"
   },
   "dependencies": {
-    "@unhead/vue": "^1.9.5",
+    "@unhead/vue": "^1.9.7",
     "@unocss/reset": "^0.59.4",
     "@vueuse/core": "^10.9.0",
     "@vueuse/head": "^2.0.0",
