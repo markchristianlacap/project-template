@@ -1,5 +1,9 @@
-html,
-body {
-  @apply dark:bg-surface-800 dark:text-surface-100;
-  font-family: "Roboto", sans-serif;
+html {
+  background: rgb(var(--surface-100));
+  color: rgb(var(--surface-900));
+  font-family: 'Roboto', sans-serif;
+}
+html.dark {
+  background: rgb(var(--surface-700));
+  color: rgb(var(--surface-200));
 }

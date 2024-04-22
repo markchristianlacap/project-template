@@ -4,8 +4,6 @@ import type { MenuItem } from 'primevue/menuitem'
 const userStore = useUserStore()
 const toast = useToast()
 const router = useRouter()
-const menu = ref<any>()
-const { isMobile } = useScreenResolutions()
 const items = ref<MenuItem[]>([
   {
     label: 'Dashboard',
@@ -27,45 +25,38 @@ const items = ref<MenuItem[]>([
     },
   },
 ])
-function toggle(e: any) {
-  menu.value.toggle(e)
-}
 </script>
 
 <template>
   <main>
-    <div class="flex">
-      <!-- sidebar -->
-      <div>
-        <Menu ref="menu" pt:root:class="!rounded-none md:h-screen bg-surface-100 dark:bg-surface-700" :model="items" :popup="isMobile">
-          <template #item="{ item, props }">
-            <router-link v-if="item.route" v-slot="{ href, navigate }" :to="item.route" custom>
-              <a v-ripple :href="href" v-bind="props.action" @click="navigate">
-                <span :class="item.icon" />
-                <span class="ml-2">{{ item.label }}</span>
-              </a>
-            </router-link>
-            <a v-else v-ripple :href="item.url" :target="item.target" v-bind="props.action">
-              <span :class="item.icon" />
-              <span class="ml-2">{{ item.label }}</span>
-            </a>
-          </template>
-        </Menu>
-      </div>
-      <div class="flex-1">
-        <!-- header -->
-        <div class="flex items-center justify-between bg-white px-3 py-2 shadow dark:bg-surface-900">
-          <div>
-            <Button v-if="isMobile" outline severity="secondary" icon="pi pi-bars" aria-isMobile="true" aria-controls="overlay_menu" @click="toggle" />
-          </div>
-          <Button :icon="`pi ${isDark ? 'pi-sun' : 'pi-moon'}`" text @click="toggleDark()" />
+    <Menubar :model="items" pt:root:class="!rounded-none">
+      <template #start>
+        <div class="flex items-center justify-center gap-2">
+          <p class="border-r pr-2 text-2xl font-bold">
+            MDU
+          </p>
+          <p class="text-xs">
+            Electronic Health Record
+          </p>
         </div>
-        <div class="mb-4 border-b dark:border-surface-600" />
-        <!-- content -->
-        <div class="mx-4">
-          <RouterView />
-        </div>
-      </div>
-    </div>
+      </template>
+      <template #item="{ item, props, hasSubmenu }">
+        <router-link v-if="item.route" v-slot="{ href, navigate }" :to="item.route" custom>
+          <a v-ripple :href="href" v-bind="props.action" @click="navigate">
+            <span :class="item.icon" />
+            <span class="ml-2">{{ item.label }}</span>
+          </a>
+        </router-link>
+        <a v-else v-ripple :href="item.url" :target="item.target" v-bind="props.action">
+          <span :class="item.icon" />
+          <span class="ml-2">{{ item.label }}</span>
+          <span v-if="hasSubmenu" class="pi pi-fw pi-angle-down ml-2" />
+        </a>
+      </template>
+      <template #end>
+        <Button :icon="`pi ${isDark ? 'pi-sun' : 'pi-moon'}`" text @click="toggleDark()" />
+      </template>
+    </Menubar>
+    <RouterView />
   </main>
 </template>
