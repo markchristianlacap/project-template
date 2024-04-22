@@ -1,11 +1,9 @@
-<script setup lang="ts">
-const { visible, form } = defineModels<{
-  visible: boolean
-  form: any
-}>()
+<script setup>
+const dialog = defineModel('dialog')
+const form = defineModel('form', { default: {} })
 const toast = useToast()
 const loading = ref(false)
-const errors = ref<Record<string, string[]>>({})
+const errors = ref({})
 async function submit() {
   try {
     loading.value = true
@@ -14,15 +12,16 @@ async function submit() {
 
     else
       await api.put(`users/${form.value.id}`, form.value)
+    dialog.value = false
     toast.add({ detail: 'User saved successfully', severity: 'success' })
   }
-  catch (e: any) {
+  catch (e) {
     errors.value = e ? e.response.data.errors : {}
   }
   loading.value = false
 }
-watch(visible, () => {
-  if (visible) {
+watch(dialog, (v) => {
+  if (!v) {
     form.value = {}
     errors.value = {}
   }
@@ -30,7 +29,7 @@ watch(visible, () => {
 </script>
 
 <template>
-  <Dialog v-model:visible="visible" modal header="User Form">
+  <Dialog v-model:visible="dialog" modal header="User Form">
     <form @submit.prevent="submit">
       <div class="mb-3 flex flex-col gap-3">
         <label for="name">Name</label>
@@ -46,17 +45,17 @@ watch(visible, () => {
           {{ errors.email[0] }}
         </small>
       </div>
-      <div class="mb-3 flex flex-col gap-3">
+      <div v-if="!form.id" class="mb-3 flex flex-col gap-3">
         <label for="password">Password</label>
         <Password v-model="form.password" type="password" placeholder="Enter user password" />
         <small v-if="errors.password" class="text-red-500">
           {{ errors.password[0] }}
         </small>
       </div>
-      <div class="mt-10 flex justify-end gap-2">
-        <Button label="Cancel" severity="danger" @click="visible = false" />
-        <Button type="submit" label="Submit" :loading="loading" />
-      </div>
     </form>
+    <template #footer>
+      <Button label="Cancel" severity="danger" :disabled="loading" @click="dialog = false" />
+      <Button label="Submit" :loading="loading" @click="submit" />
+    </template>
   </Dialog>
 </template>

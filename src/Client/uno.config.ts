@@ -47,4 +47,7 @@ export default defineConfig({
       ],
     },
   },
+  shortcuts: {
+    card: 'rounded bg-surface-0 pa-sm dark:bg-surface-800',
+  },
 })

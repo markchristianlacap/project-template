@@ -4,8 +4,8 @@ const user = computed(() => userStore.user)
 </script>
 
 <template>
-  <div class="flex-1 rounded p-5 shadow dark:bg-surface-900">
-    <p>
+  <div class="card mx-auto my-4 container">
+    <p class="text-sm">
       Hello, {{ user?.name }}
     </p>
   </div>

@@ -1,26 +1,39 @@
-<script setup lang="ts">
+<script setup>
 const users = ref({ rows: [] })
 const loading = ref(false)
+const dialog = ref(false)
+const row = ref({})
+
 async function getUsers() {
   loading.value = true
   const res = await api.get('/users')
   users.value = res.data
   loading.value = false
 }
-const row = ref({})
-const dialog = ref(false)
+function create() {
+  row.value = {}
+  dialog.value = true
+}
+function edit(data) {
+  row.value = {
+    id: data.id,
+    name: data.name,
+    email: data.email,
+  }
+  dialog.value = true
+}
 onMounted(() => {
   getUsers()
 })
 </script>
 
 <template>
-  <div class="mx-auto my-4 rounded bg-surface-0 pa-sm container dark:bg-surface-800">
+  <div class="card mx-auto my-4 container">
     <div class="mb-3 flex items-center justify-between">
       <p class="text-lg font-bold">
         User Management
       </p>
-      <Button label="Create" @click="dialog = true" />
+      <Button label="Create" @click="create()" />
     </div>
     <DataTable :value="users.rows" paginator :rows="1" :rows-per-page-options="[10, 20, 50]">
       <Column field="name" header="Name" class="text-nowrap">
@@ -47,12 +60,12 @@ onMounted(() => {
         </template>
       </Column>
       <Column field="actions" header="Actions" class="text-nowrap">
-        <template #body>
-          <Button v-tooltip="`Edit User`" icon="pi pi-pencil" text />
+        <template #body="{ data }">
+          <Button v-tooltip="`Edit User`" icon="pi pi-pencil" text @click="edit(data)" />
           <Button v-tooltip="`Block User`" icon="pi pi-ban" text severity="danger" />
         </template>
       </Column>
     </DataTable>
-    <UserDialogForm v-model:visible="dialog" v-model="row" />
+    <UserDialogForm v-model:dialog="dialog" v-model:form="row" />
   </div>
 </template>
