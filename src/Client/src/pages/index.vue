@@ -52,9 +52,7 @@ async function login() {
             <Password v-model="form.password" toggle-mask :feedback="false" placeholder="Enter your password" :invalid="!!errors.password" />
             <small v-if="!!errors.password" class="text-red-500">{{ errors.password[0] }}</small>
           </div>
-        </template>
-        <template #footer>
-          <div class="text-end">
+          <div class="mt-xl text-end">
             <Button label="Login" :loading="loading" type="submit" />
           </div>
         </template>

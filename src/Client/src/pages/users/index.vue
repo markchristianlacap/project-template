@@ -5,11 +5,12 @@ import { Role } from '~/enums/role'
 
 type IForm = UserStoreReq & UserUpdateReq
 const { fetchRequest, loading, onPage, onSort, response } = useApiPagedReq(usersApi.getPaged)
-const dialog = ref(false)
+const formDialog = ref(false)
+const resetDialog = ref(false)
 const form = ref<IForm>({} as IForm)
 const id = ref<string>()
 function create() {
-  dialog.value = true
+  formDialog.value = true
   id.value = ''
   form.value = { email: '', name: '', password: '', isActive: true, role: Role.User }
 }
@@ -21,7 +22,11 @@ function edit(data: UserRowRes) {
     name: data.name,
     role: data.role,
   } as IForm
-  dialog.value = true
+  formDialog.value = true
+}
+function resetPassword(data: UserRowRes) {
+  id.value = data.id
+  resetDialog.value = true
 }
 
 onMounted(() => {
@@ -66,7 +71,7 @@ onMounted(() => {
       </Column>
       <Column field="isActive" header="Status" class="text-nowrap">
         <template #body="{ data }">
-          <InlineMessage :severity="data?.isActive ? 'success' : 'danger'">
+          <InlineMessage :severity="data?.isActive ? 'success' : 'error'">
             {{ data?.isActive ? 'Active' : 'Inactive' }}
           </InlineMessage>
         </template>
@@ -74,11 +79,12 @@ onMounted(() => {
       <Column field="actions" header="Actions" class="text-nowrap">
         <template #body="{ data }">
           <Button v-tooltip="`Edit User`" icon="pi pi-pencil" text @click="edit(data)" />
-          <Button v-tooltip="`Block User`" icon="pi pi-ban" text severity="danger" />
+          <Button v-tooltip="`Reset Password`" icon="pi pi-refresh" text severity="danger" @click="resetPassword(data)" />
         </template>
       </Column>
     </DataTable>
 
-    <UserDialogForm :id="id" v-model:dialog="dialog" v-model:form="form" @success="fetchRequest" />
+    <UserDialogForm :id="id" v-model:dialog="formDialog" v-model:form="form" @success="fetchRequest" />
+    <UserResetDialogForm v-if="id" :id="id" v-model:dialog="resetDialog" @success="fetchRequest" />
   </div>
-</template>UserStoreReq, UserUpdateReq,
+</template>

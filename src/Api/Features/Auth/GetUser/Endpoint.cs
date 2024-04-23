@@ -3,7 +3,7 @@ using Api.Services;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
 
-namespace Api.Features.GetUser;
+namespace Api.Features.Auth.GetUser;
 
 public class Endpoint : EndpointWithoutRequest<GetUserRes>
 {

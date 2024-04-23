@@ -3,7 +3,7 @@ using Api.Database;
 using FastEndpoints.Security;
 using Microsoft.EntityFrameworkCore;
 
-namespace Api.Features.Login;
+namespace Api.Features.Auth.Login;
 
 public class Endpoint : Endpoint<LoginReq>
 {
@@ -19,7 +19,12 @@ public class Endpoint : Endpoint<LoginReq>
     {
         var user = await Db
             .Users.Where(u => u.Email == req.Email)
-            .Select(u => new { u.Password, u.Id })
+            .Select(u => new
+            {
+                u.Password,
+                u.Id,
+                u.Role
+            })
             .FirstOrDefaultAsync(ct);
         if (user is null)
         {
@@ -33,6 +38,7 @@ public class Endpoint : Endpoint<LoginReq>
 
         await CookieAuth.SignInAsync(u =>
         {
+            u.Roles.Add(user.Role.ToString());
             u.Claims.Add(new(ClaimTypes.NameIdentifier, user.Id.ToString()));
         });
     }

@@ -1,4 +1,4 @@
-﻿namespace Api.Features.GetUser;
+﻿namespace Api.Features.Auth.GetUser;
 
 public class GetUserRes
 {

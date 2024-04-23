@@ -1,4 +1,4 @@
-namespace Api.Enums;
+﻿namespace Api.Enums;
 
 public enum Role
 {

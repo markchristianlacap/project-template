@@ -22,5 +22,6 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     UserDialogForm: typeof import('./components/users/UserDialogForm.vue')['default']
+    UserResetDialogForm: typeof import('./components/users/UserResetDialogForm.vue')['default']
   }
 }

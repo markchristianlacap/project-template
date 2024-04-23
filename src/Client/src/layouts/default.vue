@@ -15,16 +15,13 @@ const items = ref<MenuItem[]>([
     route: '/users',
     icon: 'pi pi-users',
   },
-  {
-    label: 'Logout',
-    icon: 'pi pi-sign-out',
-    command: async () => {
-      await userStore.logout()
-      toast.add({ severity: 'info', detail: 'Logout successfully' })
-      router.push('/')
-    },
-  },
+
 ])
+async function logout() {
+  await userStore.logout()
+  toast.add({ severity: 'info', detail: 'Logout successfully' })
+  router.push('/')
+}
 </script>
 
 <template>
@@ -54,7 +51,8 @@ const items = ref<MenuItem[]>([
         </a>
       </template>
       <template #end>
-        <Button :icon="`pi ${isDark ? 'pi-sun' : 'pi-moon'}`" text @click="toggleDark()" />
+        <Button v-tooltip="'Toggle dark mode'" :icon="`pi ${isDark ? 'pi-sun' : 'pi-moon'}`" text @click="toggleDark()" />
+        <Button v-tooltip="`Logout your account`" icon="pi pi-sign-out" text @click="logout" />
       </template>
     </Menubar>
     <RouterView />

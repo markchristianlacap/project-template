@@ -32,7 +32,10 @@ export interface UserUpdateReq extends UserModel {
 export interface UserUpdateRes extends UserUpdateReq {
 
 }
-
+export interface UserResetPasswordReq {
+  newPassword: string
+  confirmPassword: string
+}
 export const usersApi = {
   async getPaged(req?: UserPagedReq): Promise<PagedRes<UserRowRes>> {
     const { data } = await api.get('/users', { params: req })
@@ -45,5 +48,8 @@ export const usersApi = {
   async update(id: string, req: UserUpdateReq): Promise<UserUpdateRes> {
     const { data } = await api.put(`/users/${id}`, req)
     return data
+  },
+  async resetPassword(id: string, req: UserResetPasswordReq): Promise<void> {
+    await api.put(`/users/${id}/reset-password`, req)
   },
 }

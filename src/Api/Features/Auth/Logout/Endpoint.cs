@@ -1,6 +1,6 @@
 ﻿using FastEndpoints.Security;
 
-namespace Api.Features.Logout;
+namespace Api.Features.Auth.Logout;
 
 public class Endpoint : EndpointWithoutRequest
 {

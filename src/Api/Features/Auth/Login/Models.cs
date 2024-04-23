@@ -1,4 +1,4 @@
-﻿namespace Api.Features.Login;
+﻿namespace Api.Features.Auth.Login;
 
 public class LoginReq
 {
