@@ -1,4 +1,5 @@
 <script setup>
+const emits = defineEmits(['success'])
 const dialog = defineModel('dialog')
 const form = defineModel('form', { default: {} })
 const toast = useToast()
@@ -14,6 +15,7 @@ async function submit() {
       await api.put(`users/${form.value.id}`, form.value)
     dialog.value = false
     toast.add({ detail: 'User saved successfully', severity: 'success' })
+    emits('success')
   }
   catch (e) {
     errors.value = e ? e.response.data.errors : {}
@@ -40,7 +42,7 @@ watch(dialog, (v) => {
       </div>
       <div class="mb-3 flex flex-col gap-3">
         <label for="email">Email</label>
-        <InputText v-model="form.email" placeholder="Enter user email" />
+        <InputText v-model="form.email" type="email" placeholder="Enter user email" />
         <small v-if="errors.email" class="text-red-500">
           {{ errors.email[0] }}
         </small>

@@ -22,6 +22,7 @@ public class Endpoint : Endpoint<UserStoreReq, UserStoreRes>
             ThrowError(x => x.Email, "Email already exist");
         }
         var user = req.Adapt<User>();
+        user.IsActive = true;
         await Db.Users.AddAsync(user, ct);
         await Db.SaveChangesAsync(ct);
         var res = user.Adapt<UserStoreRes>();

@@ -22,21 +22,24 @@ function edit(data) {
   }
   dialog.value = true
 }
+function sort(e) {
+  console.log('sort', e)
+}
 onMounted(() => {
   getUsers()
 })
 </script>
 
 <template>
-  <div class="card mx-auto my-4 container">
+  <div class="mx-auto my-4 container card">
     <div class="mb-3 flex items-center justify-between">
       <p class="text-lg font-bold">
         User Management
       </p>
       <Button label="Create" @click="create()" />
     </div>
-    <DataTable :value="users.rows" paginator :rows="1" :rows-per-page-options="[10, 20, 50]">
-      <Column field="name" header="Name" class="text-nowrap">
+    <DataTable lazy :value="users.rows" :loading="loading" :sort="sort">
+      <Column field="name" header="Name" class="text-nowrap" sortable>
         <template #editor="{ data, field }">
           <InputText v-model="data[field]" />
         </template>
@@ -66,6 +69,6 @@ onMounted(() => {
         </template>
       </Column>
     </DataTable>
-    <UserDialogForm v-model:dialog="dialog" v-model:form="row" />
+    <UserDialogForm v-model:dialog="dialog" v-model:form="row" @success="getUsers" />
   </div>
 </template>
