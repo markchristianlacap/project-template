@@ -33,10 +33,10 @@ const items = ref<MenuItem[]>([
       <template #start>
         <div class="flex items-center justify-center gap-2">
           <p class="border-r pr-2 text-2xl font-bold">
-            MDU
+            ADMIN
           </p>
           <p class="text-xs">
-            Electronic Health Record
+            Panel
           </p>
         </div>
       </template>

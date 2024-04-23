@@ -1,7 +1,5 @@
 ﻿namespace Api.Features.Users.Update;
 
-public class UserUpdateReq
-{
-    public string Name { get; set; } = null!;
-    public string Email { get; set; } = null!;
-}
+public class UserUpdateReq : UserModel { }
+
+public class UserUpdateRes : UserUpdateReq { }

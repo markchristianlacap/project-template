@@ -7,5 +7,6 @@ public class Validator : Validator<UserStoreReq>
         RuleFor(x => x.Name).NotEmpty().NotNull();
         RuleFor(x => x.Email).NotEmpty().NotNull().EmailAddress();
         RuleFor(x => x.Password).NotEmpty().NotNull().MinimumLength(8);
+        RuleFor(x => x.Role).NotNull().IsInEnum();
     }
 }

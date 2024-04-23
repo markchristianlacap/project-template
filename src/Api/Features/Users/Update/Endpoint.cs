@@ -1,4 +1,5 @@
 ﻿using Api.Database;
+using Mapster;
 using Microsoft.EntityFrameworkCore;
 
 namespace Api.Features.Users.Update;
@@ -26,8 +27,7 @@ public class Endpoint : Endpoint<UserUpdateReq>
         {
             ThrowError(x => x.Email, "Email already exist");
         }
-        user.Name = req.Name;
-        user.Email = req.Email;
+        req.Adapt(user);
         await Db.SaveChangesAsync(ct);
     }
 }

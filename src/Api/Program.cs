@@ -10,8 +10,9 @@ var config = bld.Configuration;
 
 // Configure services
 bld.Services.AddDbContext<ApiDbContext>(options =>
-    options.UseSqlServer(config.GetConnectionString("DefaultConnection"))
+    options.UseNpgsql(config.GetConnectionString("DefaultConnection"))
 );
+
 bld.Services.AddSingleton<IUserService, UserService>();
 bld.Services.AddSpaStaticFiles(o => o.RootPath = "dist");
 

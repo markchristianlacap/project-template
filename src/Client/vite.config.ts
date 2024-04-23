@@ -6,7 +6,6 @@ import Layouts from 'vite-plugin-vue-layouts'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Markdown from 'unplugin-vue-markdown/vite'
-import VueMacros from 'unplugin-vue-macros/vite'
 import VueDevTools from 'vite-plugin-vue-devtools'
 import LinkAttributes from 'markdown-it-link-attributes'
 import Shiki from '@shikijs/markdown-it'
@@ -31,14 +30,9 @@ export default defineConfig({
   },
 
   plugins: [
-    VueMacros({
-      plugins: {
-        vue: Vue({
-          include: [/\.vue$/, /\.md$/],
-        }),
-      },
+    Vue({
+      include: [/\.vue$/, /\.md$/],
     }),
-
     // https://github.com/posva/unplugin-vue-router
     VueRouter({
       extensions: ['.vue', '.md'],
@@ -61,6 +55,10 @@ export default defineConfig({
         },
         {
           'primevue/usetoast': ['useToast'],
+        },
+        { axios: [
+          'isAxiosError',
+        ],
         },
       ],
       dts: 'src/auto-imports.d.ts',

@@ -1,32 +1,31 @@
-<script setup>
-const users = ref({ rows: [] })
-const loading = ref(false)
-const dialog = ref(false)
-const row = ref({})
+<script setup lang="ts">
+import type { UserRowRes, UserStoreReq, UserUpdateReq } from '~/api/users'
+import { usersApi } from '~/api/users'
+import { Role } from '~/enums/role'
 
-async function getUsers() {
-  loading.value = true
-  const res = await api.get('/users')
-  users.value = res.data
-  loading.value = false
-}
+type IForm = UserStoreReq & UserUpdateReq
+const { fetchRequest, loading, onPage, onSort, response } = useApiPagedReq(usersApi.getPaged)
+const dialog = ref(false)
+const form = ref<IForm>({} as IForm)
+const id = ref<string>()
 function create() {
-  row.value = {}
   dialog.value = true
+  id.value = ''
+  form.value = { email: '', name: '', password: '', isActive: true, role: Role.User }
 }
-function edit(data) {
-  row.value = {
-    id: data.id,
-    name: data.name,
+function edit(data: UserRowRes) {
+  id.value = data.id
+  form.value = {
     email: data.email,
-  }
+    isActive: data.isActive,
+    name: data.name,
+    role: data.role,
+  } as IForm
   dialog.value = true
 }
-function sort(e) {
-  console.log('sort', e)
-}
+
 onMounted(() => {
-  getUsers()
+  fetchRequest()
 })
 </script>
 
@@ -38,7 +37,17 @@ onMounted(() => {
       </p>
       <Button label="Create" @click="create()" />
     </div>
-    <DataTable lazy :value="users.rows" :loading="loading" :sort="sort">
+
+    <DataTable
+      :value="response?.rows"
+      lazy
+      paginator
+      :rows="response?.rowsPerPage"
+      :total-records="response?.rowsCount"
+      :loading="loading"
+      @page="onPage"
+      @sort="onSort"
+    >
       <Column field="name" header="Name" class="text-nowrap" sortable>
         <template #editor="{ data, field }">
           <InputText v-model="data[field]" />
@@ -69,6 +78,7 @@ onMounted(() => {
         </template>
       </Column>
     </DataTable>
-    <UserDialogForm v-model:dialog="dialog" v-model:form="row" @success="getUsers" />
+
+    <UserDialogForm :id="id" v-model:dialog="dialog" v-model:form="form" @success="fetchRequest" />
   </div>
-</template>
+</template>UserStoreReq, UserUpdateReq,

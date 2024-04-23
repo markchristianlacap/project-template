@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import type { Errors } from '~/types/errors'
+
 const userStore = useUserStore()
 const loading = ref(false)
 const router = useRouter()
-const errors = ref<Record<string, string[]>>({})
+const errors = ref<Errors<typeof form.value>>({})
 const form = ref({
   email: '',
   password: '',
@@ -22,21 +24,21 @@ async function login() {
 </script>
 
 <template>
-  <div class="mt-200px">
-    <Card class="m-auto w-500px">
-      <template #title>
-        <div class="mb-2 flex items-center justify-between">
-          <p>
-            Login to your account
-          </p>
-          <Button :icon="isDark ? 'pi pi-moon' : 'pi pi-sun'" text @click="toggleDark()" />
-        </div>
-      </template>
-      <template #subtitle>
-        Please enter your email and password to login to your account.
-      </template>
-      <template #content>
-        <form @submit.prevent="login">
+  <div class="grid h-screen justify-center grid-items-center">
+    <form class="mx-sm max-w-500px md:mx-0" @submit.prevent="login">
+      <Card>
+        <template #title>
+          <div class="flex items-center justify-between">
+            <span>
+              Login to your account
+            </span>
+            <Button :icon="isDark ? 'pi pi-moon' : 'pi pi-sun'" text @click="toggleDark()" />
+          </div>
+        </template>
+        <template #subtitle>
+          Please enter your email and password to login to your account.
+        </template>
+        <template #content>
           <Message v-if="errors.generalErrors" severity="error">
             {{ errors.generalErrors[0] }}
           </Message>
@@ -45,17 +47,19 @@ async function login() {
             <InputText v-model="form.email" placeholder="Enter your email" type="email" :invalid="!!errors.email" />
             <small v-if="!!errors.email" class="text-red-500">{{ errors.email[0] }}</small>
           </div>
-          <div class="mt-4 flex flex-col gap-2">
+          <div class="mt-sm flex flex-col gap-2">
             <label for="password">Password</label>
             <Password v-model="form.password" toggle-mask :feedback="false" placeholder="Enter your password" :invalid="!!errors.password" />
             <small v-if="!!errors.password" class="text-red-500">{{ errors.password[0] }}</small>
           </div>
-          <div class="mt-8 text-end">
+        </template>
+        <template #footer>
+          <div class="text-end">
             <Button label="Login" :loading="loading" type="submit" />
           </div>
-        </form>
-      </template>
-    </Card>
+        </template>
+      </Card>
+    </form>
   </div>
 </template>
 
