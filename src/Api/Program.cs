@@ -1,5 +1,6 @@
 ﻿using System.Text.Json;
 using Api.Database;
+using Api.Database.Interceptors;
 using Api.Database.Seeders;
 using Api.Services;
 using FastEndpoints.Security;
@@ -13,7 +14,9 @@ bld.Services.AddDbContext<ApiDbContext>(options =>
     options.UseNpgsql(config.GetConnectionString("DefaultConnection"))
 );
 
+bld.Services.AddSingleton<IDateTimeService, DateTimeService>();
 bld.Services.AddSingleton<IUserService, UserService>();
+bld.Services.AddScoped<AuditInterceptor>();
 bld.Services.AddSpaStaticFiles(o => o.RootPath = "dist");
 
 // Configure authentication, authorization and FastEndpoints
