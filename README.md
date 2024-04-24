@@ -25,11 +25,11 @@
 - [Vue 3](https://vuejs.org)
 - [Vite](https://vitejs.dev)
 - [PrimeVue](https://primevue.org)
-- [UnoCSS](https://unocss.dev)]
+- [UnoCSS](https://unocss.dev)
 
 ## Database
 
-- [SQL Server](https://docs.microsoft.com/en-us/sql/database-engine/sql)
+- [PostgreSQL](https://www.postgresql.org)
 
 ## Packages Used
 

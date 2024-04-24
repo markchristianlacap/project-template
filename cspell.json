@@ -4,8 +4,6 @@
         "Mapster",
         "Npgsql",
         "omsc",
-        "Pinia",
-        "sqlpackage",
-        "sqlproj"
+        "Pinia"
     ]
 }
