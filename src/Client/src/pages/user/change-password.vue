@@ -13,7 +13,7 @@ async function onSubmit() {
 </script>
 
 <template>
-  <div class="mx-auto my-sm max-w-xl card">
+  <div class="mx-auto my-xl max-w-xl card">
     <h1 class="mb-sm text-xl">
       Change Password
     </h1>

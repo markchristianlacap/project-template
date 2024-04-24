@@ -21,6 +21,9 @@ const userMenus: MenuItem[] = [
       {
         label: 'Update Profile',
         icon: 'pi pi-user-edit',
+        command: () => {
+          router.push('/user/update-profile')
+        },
       },
     ],
   },
