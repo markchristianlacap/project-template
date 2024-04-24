@@ -19,7 +19,7 @@ export function useApiPagedReq<TReq, TRes>(action: (req?: TReq) => Promise<Paged
     await fetchRequest()
   }
   const onSort = async (event: DataTableSortEvent) => {
-    request.value = { ...request.value as any, sortBy: event.sortField, descending: event.sortOrder }
+    request.value = { ...request.value as any, sortBy: event.sortField, descending: event.sortOrder === 1 }
     await fetchRequest()
   }
   const onFilterRequest = async () => {
