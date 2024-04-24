@@ -1,4 +1,4 @@
-namespace Api.Features.Auth.ChangePassword;
+﻿namespace Api.Features.Auth.ChangePassword;
 
 public class ChangePasswordReq
 {

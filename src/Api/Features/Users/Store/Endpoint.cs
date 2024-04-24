@@ -1,5 +1,6 @@
 ﻿using Api.Database;
 using Api.Entities;
+using Api.Enums;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +13,7 @@ public class Endpoint : Endpoint<UserStoreReq, UserStoreRes>
     public override void Configure()
     {
         Post("/users");
+        Roles(nameof(Role.Admin));
     }
 
     public override async Task HandleAsync(UserStoreReq req, CancellationToken ct)
@@ -22,7 +24,7 @@ public class Endpoint : Endpoint<UserStoreReq, UserStoreRes>
             ThrowError(x => x.Email, "Email already exist");
         }
         var user = req.Adapt<User>();
-        user.IsActive = true;
+        user.Password = BCrypt.Net.BCrypt.EnhancedHashPassword(req.Password);
         await Db.Users.AddAsync(user, ct);
         await Db.SaveChangesAsync(ct);
         var res = user.Adapt<UserStoreRes>();

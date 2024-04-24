@@ -17,11 +17,16 @@ const form = ref<UserResetPasswordReq>({
 const { dialog } = useVModels(props, emits)
 const loading = ref(false)
 const errors = ref<Errors<UserResetPasswordReq>>({})
-
+const toast = useToast()
 async function resetPassword() {
   try {
     loading.value = true
     await usersApi.resetPassword(props.id, form.value)
+    dialog.value = false
+    toast.add({
+      severity: 'success',
+      detail: 'Password reset successfully',
+    })
   }
   catch (e) {
     if (isAxiosError(e))

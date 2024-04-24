@@ -1,4 +1,5 @@
 ﻿using Api.Database;
+using Api.Enums;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,6 +12,7 @@ public class Endpoint : Endpoint<UserUpdateReq>
     public override void Configure()
     {
         Put("/users/{id:guid}");
+        Roles(nameof(Role.Admin));
     }
 
     public override async Task HandleAsync(UserUpdateReq req, CancellationToken ct)

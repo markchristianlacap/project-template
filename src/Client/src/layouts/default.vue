@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { MenuItem } from 'primevue/menuitem'
+import { Role } from '~/enums/role'
 
 const menu = ref()
 const userStore = useUserStore()
@@ -34,9 +35,13 @@ const links = ref<MenuItem[]>([
     label: 'Users',
     route: '/users',
     icon: 'pi pi-users',
+    roles: [Role.Admin],
   },
-
 ])
+const userLinks = computed(() => {
+  // filter roles associated with the user
+  return links.value.filter(x => !x.roles || x.roles.includes(userStore.user?.role))
+})
 function logout(event: MouseEvent) {
   confirm.require({
     target: event.currentTarget as HTMLElement,
@@ -58,7 +63,7 @@ function toggle(event: MouseEvent) {
 
 <template>
   <main>
-    <Menubar :model="links" pt:root:class="!rounded-none !bg-surface-100 dark:!bg-surface-900">
+    <Menubar :model="userLinks" pt:root:class="!rounded-none !bg-surface-100 dark:!bg-surface-900">
       <template #start>
         <div class="flex items-center justify-center gap-2">
           <p class="jersey-25-regular border-r pr-2 text-2xl font-bold">

@@ -1,4 +1,5 @@
 ﻿using Api.Database;
+using Api.Enums;
 using Mapster;
 
 namespace Api.Features.Users.Index;
@@ -10,6 +11,7 @@ public class Endpoint : Endpoint<UserPagedReq, PagedRes<UserRowRes>>
     public override void Configure()
     {
         Get("/users");
+        Roles(nameof(Role.Admin));
     }
 
     public override async Task HandleAsync(UserPagedReq req, CancellationToken ct)

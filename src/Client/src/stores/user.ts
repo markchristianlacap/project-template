@@ -1,19 +1,16 @@
 import { defineStore } from 'pinia'
+import { type GetUserRes, authApi } from '~/api/auth'
 
 export interface LoginReq {
   email: string
   password: string
 }
-export interface GetUserRes {
-  id: string
-  name: string
-  email: string
-}
+
 export const useUserStore = defineStore('user', () => {
   const user = ref<GetUserRes | null>(null)
   async function fetchUser(): Promise<GetUserRes | null> {
     try {
-      const { data } = await api.get('/user')
+      const data = await authApi.getUser()
       user.value = data
       return Promise.resolve(data)
     }
