@@ -4,7 +4,18 @@
     "antfu.goto-alias",
     "csstools.postcss",
     "dbaeumer.vscode-eslint",
-    "vue.volar",
-    "streetsidesoftware.code-spell-checker"
+    "streetsidesoftware.code-spell-checker",
+    "ms-dotnettools.vscode-dotnet-runtime",
+    "formulahendry.auto-close-tag",
+    "formulahendry.auto-rename-tag",
+    "ms-dotnettools.csharp",
+    "ms-dotnettools.csdevkit",
+    "adrianwilczynski.namespace",
+    "jorgeserrano.vscode-csharp-snippets",
+    "adrianwilczynski.csharp-to-typescript",
+    "csharpier.csharpier-vscode",
+    "editorconfig.editorconfig",
+    "drilko.fastendpoints",
+    "antfu.unocss"
   ]
 }
