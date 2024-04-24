@@ -48,7 +48,7 @@ watch(dialog, (v) => {
 </script>
 
 <template>
-  <Dialog v-model:visible="dialog" modal header="User Form">
+  <Dialog v-model:visible="dialog" class="w-xl" modal header="User Form">
     <form @submit.prevent="submit">
       <div class="mb-sm flex flex-col gap-2">
         <label for="name">Name</label>

@@ -16,6 +16,7 @@ declare module 'vue' {
     Dropdown: typeof import('primevue/dropdown')['default']
     InlineMessage: typeof import('primevue/inlinemessage')['default']
     InputText: typeof import('primevue/inputtext')['default']
+    Menu: typeof import('primevue/menu')['default']
     Menubar: typeof import('primevue/menubar')['default']
     Message: typeof import('primevue/message')['default']
     Password: typeof import('primevue/password')['default']

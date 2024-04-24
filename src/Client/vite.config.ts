@@ -56,6 +56,9 @@ export default defineConfig({
         {
           'primevue/usetoast': ['useToast'],
         },
+        {
+          'primevue/useconfirm': ['useConfirm'],
+        },
         { axios: [
           'isAxiosError',
         ],

@@ -149,6 +149,7 @@ declare global {
   const useClipboardItems: typeof import('@vueuse/core')['useClipboardItems']
   const useCloned: typeof import('@vueuse/core')['useCloned']
   const useColorMode: typeof import('@vueuse/core')['useColorMode']
+  const useConfirm: typeof import('primevue/useconfirm')['useConfirm']
   const useConfirmDialog: typeof import('@vueuse/core')['useConfirmDialog']
   const useCounter: typeof import('@vueuse/core')['useCounter']
   const useCssModule: typeof import('vue')['useCssModule']
@@ -184,6 +185,7 @@ declare global {
   const useFileSystemAccess: typeof import('@vueuse/core')['useFileSystemAccess']
   const useFocus: typeof import('@vueuse/core')['useFocus']
   const useFocusWithin: typeof import('@vueuse/core')['useFocusWithin']
+  const useForm: typeof import('./composables/form')['useForm']
   const useFps: typeof import('@vueuse/core')['useFps']
   const useFullscreen: typeof import('@vueuse/core')['useFullscreen']
   const useGamepad: typeof import('@vueuse/core')['useGamepad']
@@ -454,6 +456,7 @@ declare module 'vue' {
     readonly useClipboardItems: UnwrapRef<typeof import('@vueuse/core')['useClipboardItems']>
     readonly useCloned: UnwrapRef<typeof import('@vueuse/core')['useCloned']>
     readonly useColorMode: UnwrapRef<typeof import('@vueuse/core')['useColorMode']>
+    readonly useConfirm: UnwrapRef<typeof import('primevue/useconfirm')['useConfirm']>
     readonly useConfirmDialog: UnwrapRef<typeof import('@vueuse/core')['useConfirmDialog']>
     readonly useCounter: UnwrapRef<typeof import('@vueuse/core')['useCounter']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
@@ -489,6 +492,7 @@ declare module 'vue' {
     readonly useFileSystemAccess: UnwrapRef<typeof import('@vueuse/core')['useFileSystemAccess']>
     readonly useFocus: UnwrapRef<typeof import('@vueuse/core')['useFocus']>
     readonly useFocusWithin: UnwrapRef<typeof import('@vueuse/core')['useFocusWithin']>
+    readonly useForm: UnwrapRef<typeof import('./composables/form')['useForm']>
     readonly useFps: UnwrapRef<typeof import('@vueuse/core')['useFps']>
     readonly useFullscreen: UnwrapRef<typeof import('@vueuse/core')['useFullscreen']>
     readonly useGamepad: UnwrapRef<typeof import('@vueuse/core')['useGamepad']>
@@ -751,6 +755,7 @@ declare module '@vue/runtime-core' {
     readonly useClipboardItems: UnwrapRef<typeof import('@vueuse/core')['useClipboardItems']>
     readonly useCloned: UnwrapRef<typeof import('@vueuse/core')['useCloned']>
     readonly useColorMode: UnwrapRef<typeof import('@vueuse/core')['useColorMode']>
+    readonly useConfirm: UnwrapRef<typeof import('primevue/useconfirm')['useConfirm']>
     readonly useConfirmDialog: UnwrapRef<typeof import('@vueuse/core')['useConfirmDialog']>
     readonly useCounter: UnwrapRef<typeof import('@vueuse/core')['useCounter']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
@@ -786,6 +791,7 @@ declare module '@vue/runtime-core' {
     readonly useFileSystemAccess: UnwrapRef<typeof import('@vueuse/core')['useFileSystemAccess']>
     readonly useFocus: UnwrapRef<typeof import('@vueuse/core')['useFocus']>
     readonly useFocusWithin: UnwrapRef<typeof import('@vueuse/core')['useFocusWithin']>
+    readonly useForm: UnwrapRef<typeof import('./composables/form')['useForm']>
     readonly useFps: UnwrapRef<typeof import('@vueuse/core')['useFps']>
     readonly useFullscreen: UnwrapRef<typeof import('@vueuse/core')['useFullscreen']>
     readonly useGamepad: UnwrapRef<typeof import('@vueuse/core')['useGamepad']>

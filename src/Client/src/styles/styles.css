@@ -1,9 +1,14 @@
+* {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
 html {
-  background: rgb(var(--surface-100));
+  background: rgb(var(--surface-50));
   color: rgb(var(--surface-900));
-  font-family: 'Roboto', sans-serif;
+
 }
 html.dark {
-  background: rgb(var(--surface-700));
+  background: rgb(var(--surface-950));
   color: rgb(var(--surface-200));
 }

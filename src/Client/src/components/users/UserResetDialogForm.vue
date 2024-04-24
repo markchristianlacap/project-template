@@ -43,7 +43,7 @@ watch(dialog, (v) => {
 </script>
 
 <template>
-  <Dialog v-model:visible="dialog" modal header="Reset Password">
+  <Dialog v-model:visible="dialog" class="w-full" modal header="Reset Password">
     <form @submit.prevent="resetPassword">
       <div class="flex flex-col gap-2">
         <label for="newPassword">New Password</label>

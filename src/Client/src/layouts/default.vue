@@ -1,10 +1,30 @@
 <script setup lang="ts">
 import type { MenuItem } from 'primevue/menuitem'
 
+const menu = ref()
 const userStore = useUserStore()
 const toast = useToast()
 const router = useRouter()
-const items = ref<MenuItem[]>([
+const confirm = useConfirm()
+const userMenus: MenuItem[] = [
+  {
+    label: 'User Menu',
+    items: [
+      {
+        label: 'Change Password',
+        icon: 'pi pi-key',
+        command: () => {
+          router.push('/user/change-password')
+        },
+      },
+      {
+        label: 'Update Profile',
+        icon: 'pi pi-user-edit',
+      },
+    ],
+  },
+]
+const links = ref<MenuItem[]>([
   {
     label: 'Dashboard',
     route: '/user',
@@ -17,19 +37,31 @@ const items = ref<MenuItem[]>([
   },
 
 ])
-async function logout() {
-  await userStore.logout()
-  toast.add({ severity: 'info', detail: 'Logout successfully' })
-  router.push('/')
+function logout(event: MouseEvent) {
+  confirm.require({
+    target: event.currentTarget as HTMLElement,
+    message: 'Are you sure you want to logout?',
+    acceptLabel: 'Yes',
+    rejectLabel: 'No',
+    acceptProps: { severity: 'danger' },
+    accept: async () => {
+      await userStore.logout()
+      toast.add({ severity: 'info', detail: 'Logout successfully' })
+      router.push('/')
+    },
+  })
+}
+function toggle(event: MouseEvent) {
+  menu.value.toggle(event)
 }
 </script>
 
 <template>
   <main>
-    <Menubar :model="items" pt:root:class="!rounded-none">
+    <Menubar :model="links" pt:root:class="!rounded-none !bg-surface-100 dark:!bg-surface-900">
       <template #start>
         <div class="flex items-center justify-center gap-2">
-          <p class="border-r pr-2 text-2xl font-bold">
+          <p class="jersey-25-regular border-r pr-2 text-2xl font-bold">
             ADMIN
           </p>
           <p class="text-xs">
@@ -51,6 +83,8 @@ async function logout() {
         </a>
       </template>
       <template #end>
+        <Button type="button" icon="pi-user pi" text aria-haspopup="true" aria-controls="user_item_menu" @click="toggle" />
+        <Menu ref="menu" :model="userMenus" :popup="true" />
         <Button v-tooltip="'Toggle dark mode'" :icon="`pi ${isDark ? 'pi-sun' : 'pi-moon'}`" text @click="toggleDark()" />
         <Button v-tooltip="`Logout your account`" icon="pi pi-sign-out" text @click="logout" />
       </template>
