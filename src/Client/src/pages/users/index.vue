@@ -4,7 +4,7 @@ import { usersApi } from '~/api/users'
 import { Role } from '~/enums/role'
 
 type IForm = UserStoreReq & UserUpdateReq
-const { fetchRequest, loading, onPage, onSort, response } = useApiPagedReq(usersApi.getPaged)
+const { fetchRequest, loading, onPage, onSort, response, request } = useApiPagedReq(usersApi.getPaged)
 const formDialog = ref(false)
 const resetDialog = ref(false)
 const form = ref<IForm>({} as IForm)
@@ -32,6 +32,10 @@ function resetPassword(data: UserRowRes) {
 onMounted(() => {
   fetchRequest()
 })
+watchDeep(request, () => {
+  if (request.value.search)
+    fetchRequest()
+})
 </script>
 
 <template>
@@ -40,7 +44,10 @@ onMounted(() => {
       <p class="text-lg font-bold">
         User Management
       </p>
-      <Button label="Create" @click="create()" />
+      <div class="flex gap-2">
+        <InputText v-model="request.search" placeholder="Search users..." />
+        <Button label="Create" @click="create()" />
+      </div>
     </div>
 
     <DataTable
@@ -58,18 +65,19 @@ onMounted(() => {
           <InputText v-model="data[field]" />
         </template>
       </Column>
-      <Column field="email" header="Email" class="text-nowrap" />
-      <Column field="createdAt" header="Created At" class="text-nowrap">
+      <Column field="email" header="Email" sortable class="text-nowrap" />
+      <Column field="roleDesc" sort-field="role" header="Role" sortable class="text-nowrap" />
+      <Column field="createdAt" sortable header="Created At" class="text-nowrap">
         <template #body="slotProps">
           {{ formatDate(slotProps.data.createdAt) }}
         </template>
       </Column>
-      <Column field="updatedAt" header="Updated At" class="text-nowrap">
+      <Column field="updatedAt" sortable header="Updated At" class="text-nowrap">
         <template #body="slotProps">
           {{ formatDate(slotProps.data.updatedAt) }}
         </template>
       </Column>
-      <Column field="isActive" header="Status" class="text-nowrap">
+      <Column field="isActive" sortable header="Status" class="text-nowrap">
         <template #body="{ data }">
           <InlineMessage :severity="data?.isActive ? 'success' : 'error'">
             {{ data?.isActive ? 'Active' : 'Inactive' }}
