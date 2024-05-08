@@ -2,8 +2,11 @@
     "words": [
         "dacpac",
         "Mapster",
-        "Npgsql",
         "omsc",
         "Pinia"
+    ],
+    "ignorePaths": [
+        "src/Client/src/presets/*",
+        "*.d.ts"
     ]
 }

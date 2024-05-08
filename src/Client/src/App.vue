@@ -28,6 +28,6 @@ useHead({
 
 <template>
   <Toast />
-  <RouterView />
   <ConfirmPopup />
+  <RouterView />
 </template>

@@ -1,1 +1,3 @@
-export type Errors<T> = Partial<Record<keyof T | 'generalErrors', string[]>>
+export type Errors<T> = {
+  [P in keyof T | 'generalErrors']?: string;
+}
