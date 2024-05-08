@@ -9,8 +9,8 @@ public static class UsersSeeder
         var admin = new User
         {
             Name = "Admin",
-            Email = "admin@example.com",
-            Password = BCrypt.Net.BCrypt.EnhancedHashPassword("omsc.portal@2019"),
+            Email = "admin@admin.com",
+            Password = BCrypt.Net.BCrypt.EnhancedHashPassword("password"),
             IsActive = true,
         };
         if (!context.Users.Any(u => u.Email == admin.Email))

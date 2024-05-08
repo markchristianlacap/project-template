@@ -8,10 +8,11 @@ using Microsoft.EntityFrameworkCore;
 
 var bld = WebApplication.CreateBuilder();
 var config = bld.Configuration;
+var connectionString = config.GetConnectionString("DefaultConnection");
 
 // Configure services
 bld.Services.AddDbContext<ApiDbContext>(options =>
-    options.UseNpgsql(config.GetConnectionString("DefaultConnection"))
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString))
 );
 
 bld.Services.AddSingleton<IDateTimeService, DateTimeService>();
