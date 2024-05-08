@@ -1,4 +1,4 @@
-namespace Api.Features.Auth.UpdateProfile;
+﻿namespace Api.Features.Auth.UpdateProfile;
 
 public class UserUpdateProfileReq
 {

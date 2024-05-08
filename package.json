@@ -3,7 +3,8 @@
     "type": "module",
     "scripts": {
         "watch": "dotnet watch --project src/Api --no-hot-reload",
-        "dev": "pnpm --filter ./src/Client dev"
+        "dev": "pnpm --filter ./src/Client dev",
+        "lint": "pnpm --filter ./src/Client lint"
     },
     "workspaces":[
         "./src/Client"
