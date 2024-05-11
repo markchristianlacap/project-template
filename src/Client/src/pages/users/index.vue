@@ -4,7 +4,7 @@ import { usersApi } from '~/api/users'
 import { Role } from '~/enums/role'
 
 type IForm = UserStoreReq & UserUpdateReq
-const { fetchRequest, loading, onPage, onSort, response, request } = useApiPagedReq(usersApi.getPaged)
+const { fetchRequest, loading, onSort, response, request } = useApiPagedReq(usersApi.getPaged)
 const formDialog = ref(false)
 const resetDialog = ref(false)
 const form = ref<IForm>({} as IForm)
@@ -53,11 +53,7 @@ watchDeep(request, () => {
     <DataTable
       :value="response?.rows"
       lazy
-      paginator
-      :rows="response?.rowsPerPage"
-      :total-records="response?.rowsCount"
       :loading="loading"
-      @page="onPage"
       @sort="onSort"
     >
       <Column field="name" header="Name" class="text-nowrap" sortable>
@@ -91,6 +87,7 @@ watchDeep(request, () => {
         </template>
       </Column>
     </DataTable>
+    <Pagination v-model="request.page!" :total-pages="response?.rowsCount!" />
 
     <UserDialogForm :id="id" v-model:dialog="formDialog" v-model:form="form" @success="fetchRequest" />
     <UserResetDialogForm v-if="id" :id="id" v-model:dialog="resetDialog" @success="fetchRequest" />
